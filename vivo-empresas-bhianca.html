@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vivo Empresas | Bhianca Paulucci — Consultora Comercial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =============================================
+       CSS VARIABLES & RESET
+    ============================================= */
+    :root {
+      --vivo-purple:     #660099;
+      --vivo-purple-dark:#4a006e;
+      --vivo-purple-mid: #8800cc;
+      --vivo-purple-soft:#f3e6ff;
+      --vivo-purple-pale:#faf5ff;
+      --accent:          #c700ff;
+      --white:           #ffffff;
+      --gray-50:         #fafafa;
+      --gray-100:        #f5f5f5;
+      --gray-200:        #ebebeb;
+      --gray-400:        #a0a0a0;
+      --gray-600:        #5a5a5a;
+      --gray-800:        #1a1a1a;
+      --text-body:       #2d2d2d;
+      --radius-sm:       8px;
+      --radius-md:       14px;
+      --radius-lg:       22px;
+      --radius-xl:       32px;
+      --shadow-sm:       0 2px 8px rgba(102,0,153,.08);
+      --shadow-md:       0 8px 32px rgba(102,0,153,.13);
+      --shadow-lg:       0 20px 60px rgba(102,0,153,.18);
+      --transition:      0.35s cubic-bezier(.4,0,.2,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-body);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* =============================================
+       SCROLL-REVEAL ANIMATION SYSTEM
+    ============================================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+
+    /* =============================================
+       HEADER
+    ============================================= */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(102,0,153,.1);
+      transition: box-shadow var(--transition);
+    }
+    header.scrolled { box-shadow: var(--shadow-md); }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      text-decoration: none;
+    }
+    .logo-brand {
+      font-family: 'Epilogue', sans-serif;
+      font-weight: 900;
+      font-size: 1.25rem;
+      color: var(--vivo-purple);
+      letter-spacing: -.02em;
+      line-height: 1;
+    }
+    .logo-brand span { color: var(--accent); }
+    .logo-sub {
+      font-size: .65rem;
+      font-weight: 600;
+      color: var(--gray-400);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .header-date {
+      font-size: .78rem;
+      color: var(--gray-400);
+      font-weight: 500;
+    }
+    .header-cta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--vivo-purple);
+      color: var(--white);
+      text-decoration: none;
+      font-size: .82rem;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 100px;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      white-space: nowrap;
+    }
+    .header-cta:hover {
+      background: var(--vivo-purple-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(102,0,153,.3);
+    }
+    .header-cta svg { flex-shrink: 0; }
+
+    /* =============================================
+       HERO
+    ============================================= */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 24px 80px;
+      overflow: hidden;
+    }
+
+    /* Background decoration */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(102,0,153,.08) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 10% 80%, rgba(199,0,255,.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Grid pattern overlay */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(102,0,153,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(102,0,153,.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    /* Floating orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      animation: float 8s ease-in-out infinite;
+    }
+    .orb-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(102,0,153,.15), transparent 70%);
+      top: -100px; right: -100px;
+      animation-duration: 10s;
+    }
+    .orb-2 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(199,0,255,.1), transparent 70%);
+      bottom: 50px; left: -80px;
+      animation-duration: 8s;
+      animation-delay: -3s;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--vivo-purple-soft);
+      border: 1px solid rgba(102,0,153,.2);
+      color: var(--vivo-purple);
+      font-size: .78rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--vivo-purple-mid);
+      border-radius: 50%;
+      animation: pulse 2s ease infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: .7; }
+    }
+
+    .hero-title {
+      font-family: 'Epilogue', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -.03em;
+      color: var(--gray-800);
+      margin-bottom: 20px;
+    }
+    .hero-title .highlight {
+      color: var(--vivo-purple);
+      position: relative;
+      display: inline-block;
+    }
+    .hero-title .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 2px; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--vivo-purple), var(--accent));
+      border-radius: 2px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--vivo-purple-mid);
+      margin-bottom: 16px;
+    }
+
+    .hero-desc {
+      font-size: .97rem;
+      line-height: 1.75;
+      color: var(--gray-600);
+      margin-bottom: 36px;
+      max-width: 480px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--vivo-purple), var(--vivo-purple-mid));
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .95rem;
+      padding: 16px 28px;
+      border-radius: 100px;
+      box-shadow: 0 8px 24px rgba(102,0,153,.3);
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--vivo-purple-mid), var(--accent));
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .btn-primary:hover::before { opacity: 1; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(102,0,153,.4); }
+    .btn-primary span, .btn-primary svg { position: relative; z-index: 1; }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--vivo-purple);
+      font-weight: 600;
+      font-size: .9rem;
+      text-decoration: none;
+      padding: 14px 20px;
+      border: 2px solid rgba(102,0,153,.2);
+      border-radius: 100px;
+      transition: all var(--transition);
+    }
+    .btn-ghost:hover {
+      background: var(--vivo-purple-soft);
+      border-color: var(--vivo-purple);
+    }
+
+    /* Stats card on hero right */
+    .hero-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .hero-card {
+      background: var(--white);
+      border: 1px solid rgba(102,0,153,.1);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--vivo-purple), var(--accent));
+    }
+
+    .hero-card-title {
+      font-family: 'Epilogue', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--gray-800);
+      margin-bottom: 16px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 14px;
+      background: var(--vivo-purple-pale);
+      border-radius: var(--radius-md);
+    }
+    .stat-value {
+      font-family: 'Epilogue', sans-serif;
+      font-weight: 900;
+      font-size: 1.7rem;
+      color: var(--vivo-purple);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--gray-600);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .consultant-snippet {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--white);
+      border: 1px solid rgba(102,0,153,.12);
+      border-radius: var(--radius-lg);
+      padding: 18px 22px;
+      box-shadow: var(--shadow-sm);
+    }
+    .consultant-avatar {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--vivo-purple), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Epilogue', sans-serif;
+      font-weight: 900;
+      font-size: 1.15rem;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .consultant-info { flex: 1; }
+    .consultant-name {
+      font-weight: 700;
+      font-size: .92rem;
+      color: var(--gray-800);
+    }
+    .consultant-role {
+      font-size: .75rem;
+      color: var(--gray-400);
+      margin-top: 2px;
+    }
+    .online-dot {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .72rem;
+      font-weight: 600;
+      color: #22c55e;
+    }
+    .online-dot::before {
+      content: '';
+      width: 7px; height: 7px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 2s ease infinite;
+    }
+
+    /* =============================================
+       SECTIONS COMMON
+    ============================================= */
+    section { padding: 96px 24px; }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--vivo-purple);
+      margin-bottom: 12px;
+    }
+    .section-label::before {
+      content: '';
+      width: 24px; height: 2px;
+      background: var(--vivo-purple);
+      border-radius: 2px;
+    }
+
+    .section-title {
+      font-family: 'Epilogue', sans-serif;
+      font-weight: 900;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      line-height: 1.1;
+      letter-spacing: -.03em;
+      color: var(--gray-800);
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: .97rem;
+      line-height: 1.75;
+      color: var(--gray-600);
+      max-width: 560px;
+    }
+
+    .section-header { margin-bottom: 56px; }
+
+    /* =============================================
+       ABOUT SECTION
+    ============================================= */
+    .about {
+      background: var(--vivo-purple-pale);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(135deg, var(--vivo-purple), var(--accent));
+    }
+
+    .about-avatar {
+      position: relative;
+      z-index: 1;
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.2);
+      border: 4px solid rgba(255,255,255,.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Epilogue', sans-serif;
+      font-weight: 900;
+      font-size: 2rem;
+      color: var(--white);
+      margin: 30px auto 20px;
+    }
+    .about-name {
+      font-family: 'Epilogue', sans-serif;
+      font-weight: 900;
+      font-size: 1.4rem;
+      color: var(--gray-800);
+      margin-bottom: 4px;
+    }
+    .about-role {
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--vivo-purple);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .about-divider {
+      height: 1px;
+      background: var(--gray-200);
+      margin: 20px 0;
+    }
+    .about-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+    .about-tag {
+      font-size: .72rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 100px;
+      background: var(--vivo-purple-soft);
+      color: var(--vivo-purple);
+    }
+
+    .about-content .section-header { margin-bottom: 28px; }
+    .about-text {
+      font-size: .97rem;
+      line-height: 1.8;
+      color: var(--gray-600);
+      margin-bottom: 16px;
+    }
+    .about-highlights {
+      margin: 28px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .about-highlight-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 18px;
+      background: var(--white);
+      border: 1px solid rgba(102,0,153,.1);
+      border-left: 3px solid var(--vivo-purple);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+    .about-highlight-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .about-highlight-text {
+      font-size: .88rem;
+      font-weight: 500;
+      color: var(--gray-800);
+      line-height: 1.5;
+    }
+    .about-highlight-text strong {
+      color: var(--vivo-purple);
+      font-weight: 700;
+    }
+
+    /* =============================================
+       PLANS SECTION
+    ============================================= */
+    .plans { background: var(--white); }
+
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .plan-card {
+      background: var(--white);
+      border: 1.5px solid rgba(102,0,153,.12);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      position: relative;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      overflow: hidden;
+    }
+    .plan-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--vivo-purple), var(--vivo-purple-mid));
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .plan-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(102,0,153,.25);
+    }
+    .plan-card:hover::before { opacity: 1; }
+
+    /* Featured plan */
+    .plan-card.featured {
+      background: linear-gradient(145deg, var(--vivo-purple), #8a00cc);
+      border-color: transparent;
+      color: var(--white);
+      transform: scale(1.03);
+      box-shadow: var(--shadow-lg);
+    }
+    .plan-card.featured::before {
+      background: rgba(255,255,255,.3);
+      opacity: 1;
+    }
+    .plan-card.featured:hover { transform: scale(1.03) translateY(-6px); }
+
+    .plan-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      background: rgba(255,215,0,.18);
+      color: #f5c518;
+      border: 1px solid rgba(245,197,24,.35);
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .plan-badge::before { content: '★'; }
+
+    .plan-name {
+      font-family: 'Epilogue', sans-serif;
+      font-weight: 900;
+      font-size: 1.35rem;
+      margin-bottom: 6px;
+    }
+    .plan-card:not(.featured) .plan-name { color: var(--gray-800); }
+
+    .plan-speed {
+      font-family: 'Epilogue', sans-serif;
+      font-size: 3.2rem;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 4px;
+      letter-spacing: -.03em;
+    }
+    .plan-card:not(.featured) .plan-speed { color: var(--vivo-purple); }
+    .plan-card.featured .plan-speed { color: var(--white); }
+
+    .plan-speed-unit {
+      font-size: .85rem;
+      font-weight: 600;
+      opacity: .75;
+      margin-bottom: 24px;
+    }
+
+    .plan-divider {
+      height: 1px;
+      margin: 20px 0;
+    }
+    .plan-card:not(.featured) .plan-divider { background: var(--gray-200); }
+    .plan-card.featured .plan-divider { background: rgba(255,255,255,.2); }
+
+    .plan-features {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+    .plan-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .88rem;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .plan-card:not(.featured) .plan-features li { color: var(--gray-600); }
+    .plan-card.featured .plan-features li { color: rgba(255,255,255,.85); }
+
+    .plan-check {
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-size: .95rem;
+    }
+    .plan-card:not(.featured) .plan-check { color: var(--vivo-purple); }
+    .plan-card.featured .plan-check { color: rgba(255,255,255,.9); }
+
+    .btn-plan {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: .9rem;
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+    .plan-card:not(.featured) .btn-plan {
+      background: var(--vivo-purple-soft);
+      color: var(--vivo-purple);
+      border: 1.5px solid rgba(102,0,153,.2);
+    }
+    .plan-card:not(.featured) .btn-plan:hover {
+      background: var(--vivo-purple);
+      color: var(--white);
+      border-color: var(--vivo-purple);
+    }
+    .plan-card.featured .btn-plan {
+      background: var(--white);
+      color: var(--vivo-purple);
+    }
+    .plan-card.featured .btn-plan:hover {
+      background: rgba(255,255,255,.9);
+      transform: scale(1.02);
+    }
+
+    /* Plan price box */
+    .plan-price-box {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin: 14px 0 4px;
+    }
+    .plan-price-label {
+      font-size: .72rem;
+      font-weight: 600;
+      opacity: .65;
+      margin-right: 2px;
+    }
+    .plan-price-value {
+      font-family: 'Epilogue', sans-serif;
+      font-weight: 900;
+      font-size: 1.9rem;
+      line-height: 1;
+      letter-spacing: -.03em;
+    }
+    .plan-card:not(.featured) .plan-price-value { color: var(--vivo-purple); }
+    .plan-card.featured .plan-price-value { color: #ffe566; }
+    .plan-price-period {
+      font-size: .8rem;
+      font-weight: 600;
+      opacity: .7;
+    }
+
+    /* =============================================
+       MOBILE PLANS SECTION
+    ============================================= */
+    .mobile-plans { background: var(--vivo-purple-pale); }
+
+    .mobile-banner {
+      background: linear-gradient(135deg, var(--vivo-purple), #9600e6);
+      border-radius: var(--radius-xl);
+      padding: 56px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mobile-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 36px 36px;
+      pointer-events: none;
+    }
+    .mobile-banner-orb {
+      position: absolute;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.07);
+      filter: blur(60px);
+      right: -80px; top: -80px;
+      pointer-events: none;
+    }
+
+    .mobile-banner-left { position: relative; z-index: 1; flex: 1; }
+    .mobile-banner-icon {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+    .mobile-banner-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,.15);
+      color: rgba(255,255,255,.9);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,.2);
+      margin-bottom: 16px;
+    }
+    .mobile-banner-title {
+      font-family: 'Epilogue', sans-serif;
+      font-weight: 900;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -.03em;
+      margin-bottom: 12px;
+    }
+    .mobile-banner-price {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .mobile-banner-price-from {
+      font-size: .82rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.7);
+    }
+    .mobile-banner-price-value {
+      font-family: 'Epilogue', sans-serif;
+      font-weight: 900;
+      font-size: 2.6rem;
+      color: #ffe566;
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+    .mobile-banner-price-month {
+      font-size: .85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.7);
+    }
+    .mobile-banner-desc {
+      font-size: .9rem;
+      color: rgba(255,255,255,.75);
+      line-height: 1.6;
+      max-width: 420px;
+    }
+
+    .mobile-banner-right {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+    .mobile-features {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .mobile-feature-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .85rem;
+      font-weight: 500;
+      color: rgba(255,255,255,.85);
+    }
+    .mobile-feature-item::before {
+      content: '✓';
+      width: 20px; height: 20px;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .7rem;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .btn-mobile {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      color: var(--vivo-purple);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: .95rem;
+      padding: 16px 28px;
+      border-radius: 100px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+      transition: all var(--transition);
+      white-space: nowrap;
+    }
+    .btn-mobile:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 12px 32px rgba(0,0,0,.3);
+    }
+
+    @media (max-width: 860px) {
+      .mobile-banner {
+        flex-direction: column;
+        padding: 40px 28px;
+        text-align: center;
+      }
+      .mobile-banner-price { justify-content: center; }
+      .mobile-banner-right { align-items: center; width: 100%; }
+      .mobile-features { align-items: flex-start; }
+    }
+
+    /* =============================================
+       BENEFITS SECTION
+    ============================================= */
+    .benefits { background: var(--gray-50); }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .benefit-card {
+      background: var(--white);
+      border: 1px solid rgba(102,0,153,.08);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: all var(--transition);
+    }
+    .benefit-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+      border-color: rgba(102,0,153,.2);
+    }
+    .benefit-icon {
+      width: 52px; height: 52px;
+      background: var(--vivo-purple-soft);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 18px;
+    }
+    .benefit-title {
+      font-family: 'Epilogue', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--gray-800);
+      margin-bottom: 8px;
+    }
+    .benefit-desc {
+      font-size: .85rem;
+      line-height: 1.65;
+      color: var(--gray-600);
+    }
+
+    /* =============================================
+       DIFERENCIAIS SECTION
+    ============================================= */
+    .diferenciais { background: var(--white); }
+
+    .diferenciais-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .diferencial-card {
+      padding: 28px 24px;
+      border: 1.5px solid rgba(102,0,153,.1);
+      border-radius: var(--radius-lg);
+      text-align: center;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .diferencial-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--vivo-purple), var(--accent));
+      transform: scaleX(0);
+      transition: transform var(--transition);
+    }
+    .diferencial-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: rgba(102,0,153,.25);
+    }
+    .diferencial-card:hover::after { transform: scaleX(1); }
+
+    .diferencial-icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+    .diferencial-title {
+      font-family: 'Epilogue', sans-serif;
+      font-weight: 800;
+      font-size: .97rem;
+      color: var(--gray-800);
+      margin-bottom: 8px;
+    }
+    .diferencial-desc {
+      font-size: .82rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    /* =============================================
+       CTA SECTION
+    ============================================= */
+    .cta-section {
+      background: linear-gradient(135deg, var(--vivo-purple), #9600e6);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+    .cta-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .cta-orb-1 {
+      width: 400px; height: 400px;
+      background: rgba(255,255,255,.08);
+      top: -100px; right: -100px;
+    }
+    .cta-orb-2 {
+      width: 300px; height: 300px;
+      background: rgba(0,0,0,.15);
+      bottom: -80px; left: -80px;
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .cta-title {
+      font-family: 'Epilogue', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -.03em;
+      margin-bottom: 16px;
+    }
+    .cta-desc {
+      font-size: 1rem;
+      color: rgba(255,255,255,.8);
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--white);
+      color: var(--vivo-purple);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.05rem;
+      padding: 18px 36px;
+      border-radius: 100px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.2);
+      transition: all var(--transition);
+    }
+    .btn-cta:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 16px 48px rgba(0,0,0,.3);
+    }
+    .cta-note {
+      margin-top: 20px;
+      font-size: .78rem;
+      color: rgba(255,255,255,.55);
+    }
+    .cta-note a { color: rgba(255,255,255,.8); }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    footer {
+      background: var(--gray-800);
+      color: var(--white);
+      padding: 60px 24px 32px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      margin-bottom: 32px;
+    }
+    .footer-brand {
+      font-family: 'Epilogue', sans-serif;
+      font-weight: 900;
+      font-size: 1.4rem;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .footer-brand span { color: var(--accent); }
+    .footer-tagline {
+      font-size: .78rem;
+      color: rgba(255,255,255,.4);
+      margin-bottom: 20px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .footer-desc {
+      font-size: .82rem;
+      color: rgba(255,255,255,.5);
+      line-height: 1.7;
+    }
+    .footer-col-title {
+      font-weight: 700;
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: rgba(255,255,255,.4);
+      margin-bottom: 20px;
+    }
+    .footer-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .88rem;
+      color: rgba(255,255,255,.65);
+      text-decoration: none;
+      padding: 5px 0;
+      transition: color var(--transition);
+    }
+    .footer-link:hover { color: var(--white); }
+    .footer-link svg { opacity: .6; flex-shrink: 0; }
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: .78rem;
+      color: rgba(255,255,255,.3);
+    }
+
+    /* =============================================
+       WHATSAPP FLOAT BUTTON
+    ============================================= */
+    .wa-float {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      z-index: 999;
+      width: 60px; height: 60px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(37,211,102,.4);
+      text-decoration: none;
+      transition: all var(--transition);
+      animation: bounceIn .6s ease 1s both;
+    }
+    @keyframes bounceIn {
+      from { transform: scale(0); opacity: 0; }
+      70% { transform: scale(1.1); }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .wa-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 32px rgba(37,211,102,.5);
+    }
+    .wa-float svg { color: var(--white); }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 72px 20px; }
+      .header-date { display: none; }
+      .plans-grid { grid-template-columns: 1fr; }
+      .plan-card.featured { transform: none; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .wa-float { bottom: 20px; right: 20px; width: 52px; height: 52px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- =============================================
+     JAVASCRIPT CONFIG & DATA
+============================================= -->
+<script>
+  /* ===== CONFIGURAÇÃO PRINCIPAL — edite aqui ===== */
+  const CONFIG = {
+    nomeConsultora: "Bhianca Paulucci",
+    whatsapp:       "5516997668997",   // DDI + DDD + número, sem espaços
+    email:          "bhianca.paulucci@prodataempresas.com.br",
+    telefone:       "(16) 99766-8997"
+  };
+
+  /* ===== PLANOS DE FIBRA — adicione ou edite aqui ===== */
+  const PLANOS = [
+    {
+      nome:      "Internet Fibra 400MB",
+      velocidade:"400",
+      unidade:   "MB",
+      preco:     "R$ 79,99",
+      destaque:  false,
+      beneficios:[
+        "Upload simétrico de alta velocidade",
+        "Ideal para equipes de até 20 pessoas",
+        "Suporte técnico dedicado",
+        "Roteador Wi-Fi empresarial incluso",
+        "Instalação sem custo"
+      ]
+    },
+    {
+      nome:      "Internet Fibra 500MB",
+      velocidade:"500",
+      unidade:   "MB",
+      preco:     "R$ 89,99",
+      destaque:  true,
+      beneficios:[
+        "Upload simétrico de alta velocidade",
+        "Ideal para equipes de até 30 pessoas",
+        "Suporte prioritário 24/7",
+        "Roteador Wi-Fi 6 empresarial incluso",
+        "SLA de disponibilidade garantido",
+        "Instalação expressa sem custo"
+      ]
+    },
+    {
+      nome:      "Internet Fibra 700MB",
+      velocidade:"700",
+      unidade:   "MB",
+      preco:     "R$ 99,99",
+      destaque:  false,
+      beneficios:[
+        "Upload simétrico de alta velocidade",
+        "Ideal para grandes equipes",
+        "Suporte VIP com gerente dedicado",
+        "Roteador Wi-Fi 6 Pro incluso",
+        "SLA premium e redundância",
+        "IP fixo incluso"
+      ]
+    }
+  ];
+
+  /* ===== HELPERS ===== */
+  function waLink(mensagem) {
+    return `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(mensagem)}`;
+  }
+</script>
+
+<!-- =============================================
+     HEADER
+============================================= -->
+<header id="header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <span class="logo-brand">Vivo <span>Empresas</span></span>
+      <span class="logo-sub">Consultora: Bhianca Paulucci</span>
+    </a>
+    <div class="header-right">
+      <span class="header-date" id="headerDate"></span>
+      <a href="#" id="headerWa" class="header-cta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.528 5.855L0 24l6.335-1.502A11.957 11.957 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.306-1.555l-.38-.226-3.763.893.946-3.66-.248-.387A9.8 9.8 0 012.182 12C2.182 6.565 6.565 2.182 12 2.182S21.818 6.565 21.818 12 17.435 21.818 12 21.818z"/></svg>
+        <span>Falar no WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- =============================================
+     HERO
+============================================= -->
+<section class="hero" id="hero">
+  <div class="hero-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="hero-inner">
+    <!-- Left -->
+    <div>
+      <div class="hero-badge reveal">Vivo Empresas — Consultoria Especializada</div>
+      <h1 class="hero-title reveal reveal-delay-1">
+        Soluções completas da <span class="highlight">Vivo Empresas</span> para o seu negócio
+      </h1>
+      <p class="hero-subtitle reveal reveal-delay-2">Atendimento personalizado com Bhianca Paulucci</p>
+      <p class="hero-desc reveal reveal-delay-2">
+        Reduza custos, melhore a qualidade da conexão e conte com suporte dedicado para a sua empresa crescer sem limitações tecnológicas.
+      </p>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="#" id="heroWa" class="btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.528 5.855L0 24l6.335-1.502A11.957 11.957 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.306-1.555l-.38-.226-3.763.893.946-3.66-.248-.387A9.8 9.8 0 012.182 12C2.182 6.565 6.565 2.182 12 2.182S21.818 6.565 21.818 12 17.435 21.818 12 21.818z"/></svg>
+          <span>Falar com consultora no WhatsApp</span>
+        </a>
+        <a href="#planos" class="btn-ghost">
+          Ver planos
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right -->
+    <div class="hero-visual">
+      <div class="hero-card reveal reveal-delay-1">
+        <div class="hero-card-title">📊 Alcance da Vivo Empresas</div>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-value">+50k</div>
+            <div class="stat-label">Empresas atendidas</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">99,9%</div>
+            <div class="stat-label">Disponibilidade</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">24/7</div>
+            <div class="stat-label">Suporte</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">#1</div>
+            <div class="stat-label">Cobertura BR</div>
+          </div>
+        </div>
+      </div>
+      <div class="consultant-snippet reveal reveal-delay-2">
+        <div class="consultant-avatar">BP</div>
+        <div class="consultant-info">
+          <div class="consultant-name" id="consultantNameSnippet"></div>
+          <div class="consultant-role">Consultora Comercial Vivo Empresas</div>
+        </div>
+        <div class="online-dot">Online</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     ABOUT
+============================================= -->
+<section class="about" id="sobre">
+  <div class="section-inner">
+    <div class="about-grid">
+      <!-- Card -->
+      <div class="about-card reveal">
+        <div class="about-avatar">BP</div>
+        <div class="about-name" id="aboutName"></div>
+        <div class="about-role">Consultora Comercial Vivo Empresas</div>
+        <div class="about-divider"></div>
+        <div class="about-tag-row">
+          <span class="about-tag">Fibra Empresarial</span>
+          <span class="about-tag">Conectividade</span>
+          <span class="about-tag">Atendimento B2B</span>
+          <span class="about-tag">Planos Corporativos</span>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="about-content reveal reveal-delay-1">
+        <div class="section-header">
+          <span class="section-label">Sobre a Consultora</span>
+          <h2 class="section-title">Atendimento personalizado para a sua empresa</h2>
+        </div>
+        <p class="about-text">
+          Com expertise em soluções de conectividade corporativa, <strong id="aboutNameText"></strong> oferece um atendimento consultivo de excelência, entendendo as necessidades específicas de cada negócio para apresentar as melhores opções da Vivo Empresas.
+        </p>
+        <p class="about-text">
+          Da análise do cenário atual até a implantação e acompanhamento pós-venda, você conta com suporte especializado em cada etapa da jornada.
+        </p>
+        <div class="about-highlights">
+          <div class="about-highlight-item">
+            <span class="about-highlight-icon">🎯</span>
+            <div class="about-highlight-text">
+              <strong>Diagnóstico gratuito:</strong> avaliação completa das necessidades de conectividade da sua empresa sem custo.
+            </div>
+          </div>
+          <div class="about-highlight-item">
+            <span class="about-highlight-icon">🤝</span>
+            <div class="about-highlight-text">
+              <strong>Proposta personalizada:</strong> planos sob medida alinhados ao porte e perfil do seu negócio.
+            </div>
+          </div>
+          <div class="about-highlight-item">
+            <span class="about-highlight-icon">📞</span>
+            <div class="about-highlight-text">
+              <strong>Canal direto:</strong> acesso exclusivo à consultora para suporte ágil e sem burocracia.
+            </div>
+          </div>
+        </div>
+        <a href="#" id="aboutWa" class="btn-primary" style="display:inline-flex;width:auto;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.528 5.855L0 24l6.335-1.502A11.957 11.957 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.306-1.555l-.38-.226-3.763.893.946-3.66-.248-.387A9.8 9.8 0 012.182 12C2.182 6.565 6.565 2.182 12 2.182S21.818 6.565 21.818 12 17.435 21.818 12 21.818z"/></svg>
+          <span>Falar com Bhianca</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     PLANS
+============================================= -->
+<section class="plans" id="planos">
+  <div class="section-inner">
+    <div class="section-header reveal" style="text-align:center;max-width:600px;margin:0 auto 56px;">
+      <span class="section-label" style="justify-content:center;">Planos Empresariais</span>
+      <h2 class="section-title">Escolha o plano ideal para o seu negócio</h2>
+      <p class="section-desc" style="margin:0 auto;">Fibra óptica de alta performance com suporte dedicado para empresas que não podem parar.</p>
+    </div>
+    <div class="plans-grid" id="plansGrid"></div>
+  </div>
+</section>
+
+<!-- =============================================
+     MOBILE PLANS
+============================================= -->
+<section class="mobile-plans" id="planos-moveis">
+  <div class="section-inner">
+    <div class="mobile-banner reveal">
+      <div class="mobile-banner-orb"></div>
+      <div class="mobile-banner-left">
+        <div class="mobile-banner-icon">📱</div>
+        <div class="mobile-banner-tag">Vivo Empresas — Linha Móvel</div>
+        <h2 class="mobile-banner-title">Planos Móveis para a sua equipe</h2>
+        <div class="mobile-banner-price">
+          <span class="mobile-banner-price-from">A partir de</span>
+          <span class="mobile-banner-price-value">R$ 39,99</span>
+          <span class="mobile-banner-price-month">/mês por linha</span>
+        </div>
+        <p class="mobile-banner-desc">
+          Conecte toda a sua equipe com planos móveis empresariais da Vivo. Cobertura nacional, dados generosos e controle centralizado para o gestor.
+        </p>
+      </div>
+      <div class="mobile-banner-right">
+        <div class="mobile-features">
+          <div class="mobile-feature-item">Cobertura 4G/5G em todo o Brasil</div>
+          <div class="mobile-feature-item">Dados para uso corporativo</div>
+          <div class="mobile-feature-item">Gestão centralizada das linhas</div>
+          <div class="mobile-feature-item">Fatura unificada para empresa</div>
+          <div class="mobile-feature-item">Suporte empresarial dedicado</div>
+        </div>
+        <a href="#" id="mobilePlansWa" class="btn-mobile" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.528 5.855L0 24l6.335-1.502A11.957 11.957 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.306-1.555l-.38-.226-3.763.893.946-3.66-.248-.387A9.8 9.8 0 012.182 12C2.182 6.565 6.565 2.182 12 2.182S21.818 6.565 21.818 12 17.435 21.818 12 21.818z"/></svg>
+          Quero saber mais
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     BENEFITS
+============================================= -->
+<section class="benefits" id="beneficios">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-label">Por que escolher</span>
+      <h2 class="section-title">Vantagens da Vivo Empresas</h2>
+      <p class="section-desc">Infraestrutura robusta e time especializado para manter sua empresa sempre conectada.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">⚡</div>
+        <div class="benefit-title">Alta Performance</div>
+        <p class="benefit-desc">Fibra óptica com velocidades simétricas para upload e download, garantindo máxima produtividade.</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-1">
+        <div class="benefit-icon">🛡️</div>
+        <div class="benefit-title">Suporte Prioritário</div>
+        <p class="benefit-desc">Equipe técnica especializada disponível 24 horas por dia, 7 dias por semana, para resolver qualquer incidente.</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-2">
+        <div class="benefit-icon">📊</div>
+        <div class="benefit-title">Estabilidade Corporativa</div>
+        <p class="benefit-desc">SLA de disponibilidade garantido em contrato, com monitoramento proativo da sua conexão.</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-3">
+        <div class="benefit-icon">💰</div>
+        <div class="benefit-title">Melhor Custo-Benefício</div>
+        <p class="benefit-desc">Planos flexíveis e competitivos que se adaptam ao crescimento e necessidades da sua empresa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     DIFERENCIAIS
+============================================= -->
+<section class="diferenciais" id="diferenciais">
+  <div class="section-inner">
+    <div class="section-header reveal" style="text-align:center;max-width:540px;margin:0 auto 56px;">
+      <span class="section-label" style="justify-content:center;">Diferenciais</span>
+      <h2 class="section-title">Por que contratar com a Bhianca?</h2>
+    </div>
+    <div class="diferenciais-grid">
+      <div class="diferencial-card reveal">
+        <div class="diferencial-icon">🚀</div>
+        <div class="diferencial-title">Instalação Facilitada</div>
+        <p class="diferencial-desc">Processo ágil e sem burocracia. Equipe técnica no seu endereço no prazo combinado.</p>
+      </div>
+      <div class="diferencial-card reveal reveal-delay-1">
+        <div class="diferencial-icon">👤</div>
+        <div class="diferencial-title">Atendimento Personalizado</div>
+        <p class="diferencial-desc">Canal exclusivo com a consultora para tirar dúvidas e resolver demandas sem call center.</p>
+      </div>
+      <div class="diferencial-card reveal reveal-delay-2">
+        <div class="diferencial-icon">📐</div>
+        <div class="diferencial-title">Planos Sob Medida</div>
+        <p class="diferencial-desc">Análise do seu negócio para indicar o plano com melhor custo-benefício para a sua realidade.</p>
+      </div>
+      <div class="diferencial-card reveal reveal-delay-3">
+        <div class="diferencial-icon">📋</div>
+        <div class="diferencial-title">SLA Garantido</div>
+        <p class="diferencial-desc">Acordo de nível de serviço em contrato com disponibilidade e tempo de resposta garantidos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     CTA FINAL
+============================================= -->
+<section class="cta-section" id="contato" style="padding:96px 24px;">
+  <div class="cta-orb cta-orb-1"></div>
+  <div class="cta-orb cta-orb-2"></div>
+  <div class="cta-inner reveal">
+    <span class="section-label" style="justify-content:center;color:rgba(255,255,255,.6);">Vamos conversar?</span>
+    <h2 class="cta-title">Pronto para melhorar a internet da sua empresa?</h2>
+    <p class="cta-desc">Fale agora com Bhianca e receba uma proposta personalizada gratuitamente. Sem compromisso.</p>
+    <a href="#" id="ctaWa" class="btn-cta">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.528 5.855L0 24l6.335-1.502A11.957 11.957 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.306-1.555l-.38-.226-3.763.893.946-3.66-.248-.387A9.8 9.8 0 012.182 12C2.182 6.565 6.565 2.182 12 2.182S21.818 6.565 21.818 12 17.435 21.818 12 21.818z"/></svg>
+      Falar com Bhianca no WhatsApp
+    </a>
+    <p class="cta-note">Ou entre em contato: <a id="ctaTel" href="#"></a> · <a id="ctaEmail" href="#"></a></p>
+  </div>
+</section>
+
+<!-- =============================================
+     FOOTER
+============================================= -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Vivo <span>Empresas</span></div>
+        <div class="footer-tagline">Conectando empresas ao futuro</div>
+        <p class="footer-desc">Soluções completas de conectividade para empresas de todos os portes. Fibra óptica, suporte dedicado e atendimento personalizado.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Consultora</div>
+        <a href="#" id="footerWa" class="footer-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.528 5.855L0 24l6.335-1.502A11.957 11.957 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.306-1.555l-.38-.226-3.763.893.946-3.66-.248-.387A9.8 9.8 0 012.182 12C2.182 6.565 6.565 2.182 12 2.182S21.818 6.565 21.818 12 17.435 21.818 12 21.818z"/></svg>
+          <span id="footerWaText"></span>
+        </a>
+        <a href="#" id="footerPhone" class="footer-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.72A2 2 0 012 .9h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.74a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <span id="footerPhoneText"></span>
+        </a>
+        <a href="#" id="footerEmail" class="footer-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span id="footerEmailText"></span>
+        </a>
+      </div>
+      <div>
+        <div class="footer-col-title">Navegação</div>
+        <a href="#sobre" class="footer-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Sobre a Consultora
+        </a>
+        <a href="#planos" class="footer-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Planos Fibra
+        </a>
+        <a href="#planos-moveis" class="footer-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          Planos Móveis
+        </a>
+        <a href="#beneficios" class="footer-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Benefícios
+        </a>
+        <a href="#contato" class="footer-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          Contato
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="footerYear"></span> Vivo Empresas. Todos os direitos reservados.</span>
+      <span id="footerConsultant"></span>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp float button -->
+<a href="#" id="waFloat" class="wa-float" title="Falar no WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.528 5.855L0 24l6.335-1.502A11.957 11.957 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.306-1.555l-.38-.226-3.763.893.946-3.66-.248-.387A9.8 9.8 0 012.182 12C2.182 6.565 6.565 2.182 12 2.182S21.818 6.565 21.818 12 17.435 21.818 12 21.818z"/></svg>
+</a>
+
+<!-- =============================================
+     JAVASCRIPT — INIT & BEHAVIOR
+============================================= -->
+<script>
+  /* ─── Preenche textos dinâmicos a partir do CONFIG ─── */
+  function init() {
+    const wa = (msg) => waLink(msg || `Olá ${CONFIG.nomeConsultora}, gostaria de saber mais sobre os planos Vivo Empresas.`);
+
+    // Datas e nomes
+    document.getElementById('headerDate').textContent =
+      new Date().toLocaleDateString('pt-BR', { day:'2-digit', month:'long', year:'numeric' });
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
+    document.getElementById('footerConsultant').textContent = CONFIG.nomeConsultora + ' — Consultora Comercial Vivo Empresas';
+
+    // About / consultant names
+    ['consultantNameSnippet','aboutName','aboutNameText'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = CONFIG.nomeConsultora;
+    });
+
+    // Generic WA links
+    const genericMsg = `Olá ${CONFIG.nomeConsultora}, gostaria de saber mais sobre os planos Vivo Empresas.`;
+    ['headerWa','heroWa','aboutWa','ctaWa','waFloat','footerWa'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.href = waLink(genericMsg);
+    });
+
+    // Mobile plans WA link
+    const mobileMsg = `Olá ${CONFIG.nomeConsultora}, quero saber mais sobre os planos móveis da Vivo Empresas.`;
+    const mobilePlansWaEl = document.getElementById('mobilePlansWa');
+    if (mobilePlansWaEl) mobilePlansWaEl.href = waLink(mobileMsg);
+
+    // Footer contact
+    const phone = document.getElementById('footerPhone');
+    if (phone) { phone.href = `tel:${CONFIG.telefone.replace(/\D/g,'')}`; }
+    document.getElementById('footerPhoneText').textContent = CONFIG.telefone;
+
+    const email = document.getElementById('footerEmail');
+    if (email) { email.href = `mailto:${CONFIG.email}`; }
+    document.getElementById('footerEmailText').textContent = CONFIG.email;
+    document.getElementById('footerWaText').textContent = `WhatsApp: +${CONFIG.whatsapp}`;
+
+    // CTA note
+    document.getElementById('ctaTel').href = `tel:${CONFIG.telefone.replace(/\D/g,'')}`;
+    document.getElementById('ctaTel').textContent = CONFIG.telefone;
+    document.getElementById('ctaEmail').href = `mailto:${CONFIG.email}`;
+    document.getElementById('ctaEmail').textContent = CONFIG.email;
+
+    // Build plans dynamically
+    buildPlans();
+  }
+
+  /* ─── Renderiza os cards de planos ─── */
+  function buildPlans() {
+    const grid = document.getElementById('plansGrid');
+    if (!grid) return;
+
+    PLANOS.forEach((plano, i) => {
+      const isFeatured = plano.destaque;
+      const msg = `Olá ${CONFIG.nomeConsultora}, tenho interesse no plano ${plano.nome}.`;
+      const delay = i === 0 ? '' : `reveal-delay-${i}`;
+
+      const card = document.createElement('div');
+      card.className = `plan-card${isFeatured ? ' featured' : ''} reveal ${delay}`;
+
+      const badgeHTML = isFeatured
+        ? `<div class="plan-badge">Mais Recomendado</div>`
+        : '';
+
+      const featuresHTML = plano.beneficios.map(b =>
+        `<li><span class="plan-check">✓</span> ${b}</li>`
+      ).join('');
+
+      card.innerHTML = `
+        ${badgeHTML}
+        <div class="plan-name">${plano.nome}</div>
+        <div class="plan-speed">${plano.velocidade}</div>
+        <div class="plan-speed-unit">${plano.unidade} de velocidade</div>
+        <div class="plan-price-box">
+          <span class="plan-price-label">A partir de</span>
+          <span class="plan-price-value">${plano.preco}</span>
+          <span class="plan-price-period">/mês</span>
+        </div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">${featuresHTML}</ul>
+        <a href="${waLink(msg)}" class="btn-plan" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.528 5.855L0 24l6.335-1.502A11.957 11.957 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.306-1.555l-.38-.226-3.763.893.946-3.66-.248-.387A9.8 9.8 0 012.182 12C2.182 6.565 6.565 2.182 12 2.182S21.818 6.565 21.818 12 17.435 21.818 12 21.818z"/></svg>
+          Quero este plano
+        </a>
+      `;
+
+      grid.appendChild(card);
+    });
+  }
+
+  /* ─── Scroll animations ─── */
+  function setupReveal() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  }
+
+  /* ─── Header shadow on scroll ─── */
+  function setupHeader() {
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+  }
+
+  /* ─── Run ─── */
+  document.addEventListener('DOMContentLoaded', () => {
+    init();
+    setupReveal();
+    setupHeader();
+  });
+</script>
+
+<!-- Protection layer (minified/obfuscated) -->
+<style>#_devblock{display:none;position:fixed;inset:0;z-index:99999;background:#0d0d0d;align-items:center;justify-content:center;flex-direction:column;gap:16px}#_devblock._show{display:flex}#_devblock svg{animation:_sp 1.2s linear infinite}@keyframes _sp{to{transform:rotate(360deg)}}#_devblock p{color:#fff;font-family:sans-serif;font-size:1rem;opacity:.7;margin:0}#_devblock strong{color:#c700ff;font-family:sans-serif;font-size:1.3rem}</style>
+<div id="_devblock"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#660099" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><strong>Acesso Restrito</strong><p>Ferramentas de desenvolvedor não permitidas.</p></div>
+<script>!function(){var _0x1a=['contextmenu','keydown','F12','keyCode','which','ctrlKey','shiftKey','metaKey','preventDefault','stopPropagation','_devblock','_show','classList','add','remove','body','style','userSelect','none','MozUserSelect','WebkitUserSelect','msUserSelect','outerWidth','outerHeight','innerWidth','innerHeight'],_dt=!1,_th=200,_dv=document.getElementById('_devblock');function _bl(e){if(e.type==='contextmenu'){e.preventDefault();return}var k=e.keyCode||e.which;if(k===123||(e.ctrlKey&&e.shiftKey&&(k===73||k===74||k===75||k===67))||(e.ctrlKey&&(k===85||k===83))||(e.metaKey&&e.altKey&&(k===73||k===74))){e.preventDefault();e.stopPropagation();return false}}document.addEventListener('contextmenu',_bl,!0);document.addEventListener('keydown',_bl,!0);(function _chk(){var _w=window.outerWidth-window.innerWidth>_th,_h=window.outerHeight-window.innerHeight>_th;var _open=_w||_h;if(_open&&!_dt){_dt=!0;_dv&&_dv.classList.add('_show')}else if(!_open&&_dt){_dt=!1;_dv&&_dv.classList.remove('_show')}setTimeout(_chk,900)})();var _el=document.body;_el.style.userSelect='none';_el.style.MozUserSelect='none';_el.style.WebkitUserSelect='none';_el.style.msUserSelect='none';(function(){var _dbg=new Image();Object.defineProperty(_dbg,'id',{get:function(){_dt=!0;_dv&&_dv.classList.add('_show')}});setInterval(function(){_dt=!1;console.log(_dbg);if(!_dt){_dv&&_dv.classList.remove('_show')}},1500)})()}();</script>
+</body>
+</html>
